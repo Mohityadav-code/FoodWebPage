@@ -517,6 +517,9 @@
                     <div class="  title-for-card pl-2  font-[300px] text-xl">biryani </div>
                    
                 </div>
+                <div class="hidden noprod text-black font-extralight text-2xl">
+                    No Product Found
+                </div>
                 <script>
                     const card1 = document.querySelectorAll(".card1")
                     const cardImg = document.querySelectorAll(".card-img")
@@ -1377,15 +1380,22 @@ biryani.forEach((ele)=>{
     card.style.display = "block";
   });
   }
-
-else{
-    // hide all cards
-    allCards.forEach((card) => {
-    card.style.display = "none";
-  });
-
-  // show the filtered cards
-  filteredCards.forEach((card) => {
+//   if (query!="pizza"||query!="burger"||query!="biryani") {
+    //   }
+    else{
+        var noprod=document.querySelector(".noprod")
+        noprod.style.display="block"
+        console.log('noprod: ', noprod);
+        if (filterCards.length==0) {
+        }
+        // hide all cards
+        allCards.forEach((card) => {
+            card.style.display = "none";
+        });
+        
+        // show the filtered cards
+        filteredCards.forEach((card) => {
+      noprod.style.display="none"
     card.style.display = "block";
   });
 }
