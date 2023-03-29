@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <script src="https:cdn.tailwindcss.com"></script> -->
+<!-- ! I have added Script file for OTPless in function loginPop() at line  1312 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -49,10 +49,10 @@
                     </div>
                     <div class=" hover:text-yellow-100 hover:font-[200] hover:scale-[1.1] transition-all Add-restroom">
                         <a href="https://www.zomato.com/partner-with-us">Add restaurant</a> </div>
-                    <div class=" hover:text-yellow-100 hover:font-[200] hover:scale-[1.1] transition-all investor">
-                        <button onclick="loginPop()">Login</button> </div>
-                    <div class=" hover:text-yellow-100 hover:font-[200] hover:scale-[1.1] transition-all investor">
-                        <button onclick="signupPop()">Sign up</button></div>
+                    <div class= " bg-gradient-to-l from-zinc-600 to-pink-300 pl-2 pr-2 rounded-md animate-bounce font-bold  hover:text-yellow-100 hover:font-[200] hover:scale-[1.1] transition-all investor">
+                        <button onclick="loginPop()">Login With OTPLess</button> </div>
+                    <!-- <div class=" hover:text-yellow-100 hover:font-[200] hover:scale-[1.1] transition-all investor">
+                        <button onclick="signupPop()">Sign up</button></div> -->
                 </div>
 
 
@@ -517,7 +517,7 @@
                     <div class="  title-for-card pl-2  font-[300px] text-xl">biryani </div>
                    
                 </div>
-                <div class="hidden noprod text-black font-extralight text-2xl">
+                <div class="hidden text-2xl text-black noprod font-extralight">
                     No Product Found
                 </div>
                 <script>
@@ -1257,22 +1257,25 @@
 
         </div>
     </div>
-    <div class="absolute top-0 left-0 flex items-center justify-center invisible w-full h-full login-popup bgred">
-        <div class="login-popup w-[500px] h-2/3 bg-blue-600 rounded-md  ">
-            <div class=" text-red-600 h-10 top-[0px] w-full flex justify-end items-center p-2 bg-gray-400 rounded-t-md">
-                <button type="button" class="close-button" onclick="closePopup()"><i
-                        class="fa-solid fa-xmark"></i></button></div>
-            <form class="flex flex-col items-center justify-center mt-20" action="">
-                <input type="text" class="mb-10 placeHolder " placeholder=" Username ">
-                <input type="text" class="placeHolder " placeholder=" Password ">
-                <button type="submit" class="bg-[rgb(247,198,16)] font-semibold rounded-lg m-3 p-2 pl-3 pr-3 mt-5 ">Log
-                    in</button>
-                <!-- <span>Already a member? <a href="#">Sign up</a></span> -->
+    <div class="absolute top-0 left-0 flex items-center justify-center invisible w-full h-full backdrop-blur-md login-popup">
+        <div class="login-popup w-[500px] h-2/3 bg-white rounded-md shadow-lg">
+            <div class="text-red-600 h-10 top-[0px] w-full flex justify-end items-center p-2 bg-gray-400 rounded-t-md">
+                <button type="button" class="close-button" onclick="closePopup()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form class="flex flex-col items-center justify-center mt-10" action="" onsubmit="event.preventDefault(); onLoginPopupSubmit();">
+                <div class="mb-5 form-group">
+                    <label for="username" class="block mb-2">Username:</label>
+                    <input type="text" id="usernameInput" name="username" required class="w-3/4 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                </div>
+                <div class="mb-5 form-group">
+                    <label for="mobile" class="block mb-2">Mobile Number:</label>
+                    <input type="tel" id="mobileNumberInput" name="mobile" required class="w-3/4 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                </div>
+                <button type="submit" value="Login" class="px-4 py-2 font-bold text-white bg-blue-600 rounded-md cursor-pointer hover:bg-blue-700">
             </form>
         </div>
-
-
     </div>
+    
     <div class="absolute top-0 left-0 flex items-center justify-center invisible w-full h-full signUp-popup bgred">
         <div class="login-popup w-[500px] h-2/3 bg-blue-600 rounded-md  ">
             <div class=" text-red-600 h-10 top-[0px] w-full flex justify-end items-center p-2 bg-gray-400 rounded-t-md">
@@ -1293,6 +1296,7 @@
     </div>
 
 </body>
+
 <script>
     const popup = document.querySelector(".login-popup")
     const popup2 = document.querySelector(".signUp-popup")
@@ -1300,29 +1304,27 @@
     const containerBlur = document.querySelectorAll(".container")
 
     function signupPop() {
-        background.style.background = "black"
-        containerBlur.forEach((ele) => {
-            // ele.style.filter="blur(5px)"
-            ele.style.background = "black"
-        })
         popup2.style.visibility = "visible"
     }
 
 
     function loginPop() {
-        background.style.background = "black"
-        containerBlur.forEach((ele) => {
-            // ele.style.filter="blur(5px)"
-            ele.style.background = "black"
-        })
-        popup.style.visibility = "visible"
+        // popup.style.visibility = "visible"
+    var script = document.createElement('script');
+    script.src = 'https://otpless.com/auth.js';
+    script.id = 'otplessScript';
+    script.type = 'text/javascript';
+    document.body.appendChild(script);
+    function otpless(otplessUser) {
+      var waName = otplessUser.waName;
+      var waNumber = otplessUser.waNumber;
+      // Signup/signin the user and redirect to next page
+      console.log(waName, waNumber);
     }
+  }
+
     const close = document.querySelector(".close-button")
     function closePopup() {
-        background.style.backgroundImage = "url(./bg.webp)"
-        containerBlur.forEach((ele) => {
-            ele.style.background = "transparent"
-        })
         popup.style.visibility = "hidden"
         popup2.style.visibility = "hidden"
 
