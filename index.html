@@ -49,8 +49,7 @@
                     </div>
                     <div class=" hover:text-yellow-100 hover:font-[200] hover:scale-[1.1] transition-all Add-restroom">
                         <a href="https://www.zomato.com/partner-with-us">Add restaurant</a> </div>
-                    <div class= " bg-gradient-to-l from-zinc-600 to-pink-300 pl-2 pr-2 rounded-md animate-bounce font-bold  hover:text-yellow-100 hover:font-[200] hover:scale-[1.1] transition-all investor">
-                        <button onclick="loginPop()">Login With OTPLess</button> </div>
+                    <div id="otpless" ></div>
                     <!-- <div class=" hover:text-yellow-100 hover:font-[200] hover:scale-[1.1] transition-all investor">
                         <button onclick="signupPop()">Sign up</button></div> -->
                 </div>
@@ -1296,7 +1295,19 @@
     </div>
 
 </body>
-
+<script type="text/javascript" src="https://otpless.com/auth.js"></script>
+<!-- Get user's whatsapp number and name -->
+<script type="text/javascript">
+  function otpless(otplessUser) {
+   var waName = otplessUser.waName;
+   var waNumber = otplessUser.waNumber;
+   var temp=document.getElementById("otpless")
+   console.log('temp: ', temp);
+   console.log(waName, waNumber);
+   temp.innerHTML=`Hello ${waName}!`
+   // Signup/signin the user and redirect to next page
+  }
+</script>
 <script>
     const popup = document.querySelector(".login-popup")
     const popup2 = document.querySelector(".signUp-popup")
@@ -1310,11 +1321,11 @@
 
     function loginPop() {
         // popup.style.visibility = "visible"
-    var script = document.createElement('script');
-    script.src = 'https://otpless.com/auth.js';
-    script.id = 'otplessScript';
-    script.type = 'text/javascript';
-    document.body.appendChild(script);
+    // var script = document.createElement('script');
+    // script.src = 'https://otpless.com/auth.js';
+    // script.id = 'otplessScript';
+    // script.type = 'text/javascript';
+    // document.body.appendChild(script);
     function otpless(otplessUser) {
       var waName = otplessUser.waName;
       var waNumber = otplessUser.waNumber;
